@@ -1,6 +1,7 @@
 class Dial:
-    def __init__(self, number) :
+    def __init__(self, number):
         self._number = number
+        self.number_history = [number]
 
     @property
     def number(self):
@@ -8,9 +9,10 @@ class Dial:
 
     @number.setter
     def number(self, value):
-        self._number = value % 99
+        self._number = value % 100
+        self.number_history.append(self._number)
 
-    def rotate(self, rotation) :
+    def rotate(self, rotation):
         direction_char = rotation[:1]
         direction_number = int(rotation[1:])
 
@@ -20,28 +22,32 @@ class Dial:
         elif direction_char == 'L':
             self.number -= direction_number
 
-        print(self)
+        # print(self)
 
     def __str__(self):
         return str("Lock is at: " + str(self.number))
 
 
 dummyValues = [
-    "R13",
+    "L68",
+    "L30",
+    "R48",
     "L5",
-    "L3",
-    "R5",
-    "L2",
-    "R2",
+    "R60",
+    "L55",
     "L1",
-    "R1",
-    "R120",
-    "R423",
-    "L70",
-    "R4"
+    "L99",
+    "R14",
 ]
+
+with open("input.txt", "r") as input_file:
+    rotationValues = [line.strip() for line in input_file]
+    print(rotationValues)
 
 dial = Dial(50)
 
-for rotation in dummyValues:
+for rotation in rotationValues:
     dial.rotate(rotation)
+
+print(dial.number_history)
+print(dial.number_history.count(0))

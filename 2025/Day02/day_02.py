@@ -13,10 +13,23 @@ def is_repeating_pattern(n: int) -> bool:
     half = len(s) // 2
     return s[:half] == s[half:]
 
+def is_any_repeating_pattern(n: int) -> bool:
+    s = str(abs(n))  # handle negatives if needed
+    if len(s) < 2:
+        return False
+
+    # Check every possible pattern length up to half the string
+    for k in range(1, len(s) // 2 + 1):
+        if len(s) % k == 0:
+            pattern = s[:k]
+            if pattern * (len(s) // k) == s:
+                print(pattern + " found in string: " + s)
+                return True
+    return False
 
 
 def is_valid_id(id: int) -> bool:
-    return not (str(id).startswith("0") or is_repeating_pattern(id))
+    return not (str(id).startswith("0") or is_any_repeating_pattern(id))
 
 
 dummy_values = [

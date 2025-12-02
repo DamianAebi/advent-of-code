@@ -25,8 +25,8 @@ class Dial:
             self.number += direction_number
 
         elif direction_char == 'L':
-            if self.number - direction_number <= 0 and self.number != 0:
-                self.passed_zero_counter += math.floor(math.fabs(self.number - direction_number) / 100) + 1
+            if self.number - direction_number <= 0 :
+                self.passed_zero_counter += math.floor(math.fabs(self.number - direction_number) / 100) + (self.number != 0)
             self.number -= direction_number
 
 

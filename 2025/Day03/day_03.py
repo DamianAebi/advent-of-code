@@ -5,7 +5,7 @@ print(joltage_lines)
 
 # 1. -> search the highest digit in the line (if there are multiple, then the left-most)
 # 2. -> if there are any to the right of it, take the highest from the right
-# 3. -> if there are none to the right of it, take the highest from the left
+# 3. -> if there are none to the right of it, take the highest from the left and swap digits
 
 joltage_numbers = []
 
